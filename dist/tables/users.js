@@ -1,0 +1,12 @@
+import * as app from "../app.js";
+var users_default = new app.Table({
+  name: "users",
+  description: "Winthemers registered users",
+  setup: (table) => {
+    table.string("id").unique().notNullable().primary();
+  }
+});
+export {
+  users_default as default
+};
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsiLi4vc3JjL3RhYmxlcy91c2Vycy50cyJdLAogICJzb3VyY2VzQ29udGVudCI6IFsiaW1wb3J0ICogYXMgYXBwIGZyb20gXCIuLi9hcHAuanNcIlxyXG5cclxuZXhwb3J0IGludGVyZmFjZSBVc2VycyB7XHJcbiAgLy8gdHlwZSBvZiB0YWJsZVxyXG59XHJcblxyXG5leHBvcnQgZGVmYXVsdCBuZXcgYXBwLlRhYmxlPFVzZXJzPih7XHJcbiAgbmFtZTogXCJ1c2Vyc1wiLFxyXG4gIGRlc2NyaXB0aW9uOiBcIldpbnRoZW1lcnMgcmVnaXN0ZXJlZCB1c2Vyc1wiLFxyXG4gIHNldHVwOiAodGFibGUpID0+IHtcclxuICAgIHRhYmxlLnN0cmluZygnaWQnKS51bmlxdWUoKS5ub3ROdWxsYWJsZSgpLnByaW1hcnkoKVxyXG4gIH0sXHJcbn0pIl0sCiAgIm1hcHBpbmdzIjogIkFBQUE7QUFNQSxJQUFPLGdCQUFRLElBQUksSUFBSSxNQUFhO0FBQUEsRUFDbEMsTUFBTTtBQUFBLEVBQ04sYUFBYTtBQUFBLEVBQ2IsT0FBTyxDQUFDLFVBQVU7QUFDaEIsVUFBTSxPQUFPLE1BQU0sU0FBUyxjQUFjO0FBQUE7QUFBQTsiLAogICJuYW1lcyI6IFtdCn0K

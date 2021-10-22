@@ -1,0 +1,63 @@
+#SingleInstance Force
+#ErrorStdOut
+#NoTrayIcon
+
+#Include libs/json.ahk
+#Include libs/utils.ahk
+
+Global System := Map()
+
+System["Name"]        := ""
+System["CPU"]         := ""
+System["RAM"]         := ""
+System["Disks"]       := ""
+System["OS"]          := ""
+System["UserName"]    := ""
+System["GPU"]         := ""
+System["Monitors"]    := Map()
+System["Theme"]       := ""
+
+
+System["OS"]          := GetOSInfo()
+System["CPU"]         := GetProcessorInfo()["Name"]
+System["RAM"]         := GetTotalMemory()
+System["Monitors"]    := join(GetMonitors(), ", ")
+System["UserName"]    := A_UserName 
+System["Name"]:= A_ComputerName
+System["Disks"]       := GetDriveList()
+System["GPU"]         := GetGrpahicsCardInfo()
+System["Theme"]       := GetCurrentTheme()
+
+
+
+JsonDATA := Jxon_dump(System,0)
+Command := "?fetch --update " StringToBase64(JsonDATA)
+A_Clipboard := Command
+
+Window := Gui(, "Winthemers")
+Window.BackColor := "161616"
+; Window.MarginY := 20
+Window.SetFont("q5 s12 w300 cFFFFFF")
+Window.Add("Text", "w450", "UxiFetch")
+Window.SetFont("q5 s9 w300 cB2B2B2")
+Window.Add("Text", "w450", 
+    "Uxi just did everything for you!" 
+    "`n`n    Your fetch information is now on your clipboard."
+    "`n    You can go ahead and paste your fetch information on Winthemers discord."
+    "`n`n`n`n`nIf you prefer, you can also copy the command from the box below."
+)
+Window.SetFont("q5 s9 w100")
+Window.Add("Edit", "r10 w450 ReadOnly", Command)
+
+Window.Show("w470 h330")
+
+; SetWindowComposition(Window.Hwnd, 3, "0x00000000")
+
+
+WM_LBUTTONDOWN(wParam, lParam, msg, hWnd)
+{
+    if (hWnd = Window.Hwnd)
+		DllCall("user32.dll\PostMessage", "Ptr", hWnd, "UInt", 0xA1, "Ptr", 2, "Ptr", 0)
+}
+
+OnMessage(0x0201, WM_LBUTTONDOWN)

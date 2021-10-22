@@ -1,0 +1,13 @@
+import * as app from "../app.js";
+var artists_default = new app.Table({
+  name: "artists",
+  description: "The artists table",
+  setup: (table) => {
+    table.string("user_id").unique().notNullable().primary();
+    table.string("profile_link").unique().notNullable();
+  }
+});
+export {
+  artists_default as default
+};
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsiLi4vc3JjL3RhYmxlcy9hcnRpc3RzLnRzIl0sCiAgInNvdXJjZXNDb250ZW50IjogWyJpbXBvcnQgKiBhcyBhcHAgZnJvbSBcIi4uL2FwcC5qc1wiXHJcblxyXG5leHBvcnQgaW50ZXJmYWNlIEFydGlzdHMge1xyXG4gIC8vIHR5cGUgb2YgdGFibGVcclxufVxyXG5cclxuZXhwb3J0IGRlZmF1bHQgbmV3IGFwcC5UYWJsZTxBcnRpc3RzPih7XHJcbiAgbmFtZTogXCJhcnRpc3RzXCIsXHJcbiAgZGVzY3JpcHRpb246IFwiVGhlIGFydGlzdHMgdGFibGVcIixcclxuICBzZXR1cDogKHRhYmxlKSA9PiB7XHJcbiAgICB0YWJsZS5zdHJpbmcoJ3VzZXJfaWQnKS51bmlxdWUoKS5ub3ROdWxsYWJsZSgpLnByaW1hcnkoKVxyXG4gICAgdGFibGUuc3RyaW5nKCdwcm9maWxlX2xpbmsnKS51bmlxdWUoKS5ub3ROdWxsYWJsZSgpXHJcbiAgfSxcclxufSkiXSwKICAibWFwcGluZ3MiOiAiQUFBQTtBQU1BLElBQU8sa0JBQVEsSUFBSSxJQUFJLE1BQWU7QUFBQSxFQUNwQyxNQUFNO0FBQUEsRUFDTixhQUFhO0FBQUEsRUFDYixPQUFPLENBQUMsVUFBVTtBQUNoQixVQUFNLE9BQU8sV0FBVyxTQUFTLGNBQWM7QUFDL0MsVUFBTSxPQUFPLGdCQUFnQixTQUFTO0FBQUE7QUFBQTsiLAogICJuYW1lcyI6IFtdCn0K

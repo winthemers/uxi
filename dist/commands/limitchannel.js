@@ -1,0 +1,13 @@
+import * as app from "../app.js";
+var limitchannel_default = new app.Command({
+  name: "limitchannel",
+  description: "The limitchannel command",
+  channelType: "guild",
+  async run(message) {
+    return message.send("limitchannel command is not yet implemented.");
+  }
+});
+export {
+  limitchannel_default as default
+};
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsiLi4vc3JjL2NvbW1hbmRzL2xpbWl0Y2hhbm5lbC50cyJdLAogICJzb3VyY2VzQ29udGVudCI6IFsiaW1wb3J0ICogYXMgYXBwIGZyb20gXCIuLi9hcHAuanNcIlxyXG5cclxuZXhwb3J0IGRlZmF1bHQgbmV3IGFwcC5Db21tYW5kKHtcclxuICBuYW1lOiBcImxpbWl0Y2hhbm5lbFwiLFxyXG4gIGRlc2NyaXB0aW9uOiBcIlRoZSBsaW1pdGNoYW5uZWwgY29tbWFuZFwiLFxyXG4gIGNoYW5uZWxUeXBlOiBcImd1aWxkXCIsXHJcbiAgYXN5bmMgcnVuKG1lc3NhZ2UpIHtcclxuICAgIC8vIHRvZG86IGNvZGUgaGVyZVxyXG4gICAgcmV0dXJuIG1lc3NhZ2Uuc2VuZChcImxpbWl0Y2hhbm5lbCBjb21tYW5kIGlzIG5vdCB5ZXQgaW1wbGVtZW50ZWQuXCIpXHJcbiAgfVxyXG59KSJdLAogICJtYXBwaW5ncyI6ICJBQUFBO0FBRUEsSUFBTyx1QkFBUSxJQUFJLElBQUksUUFBUTtBQUFBLEVBQzdCLE1BQU07QUFBQSxFQUNOLGFBQWE7QUFBQSxFQUNiLGFBQWE7QUFBQSxRQUNQLElBQUksU0FBUztBQUVqQixXQUFPLFFBQVEsS0FBSztBQUFBO0FBQUE7IiwKICAibmFtZXMiOiBbXQp9Cg==

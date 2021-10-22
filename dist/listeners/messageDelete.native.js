@@ -1,0 +1,15 @@
+import * as app from "../app.js";
+const listener = {
+  event: "messageDelete",
+  description: "Remove existing paginator",
+  async run(message) {
+    const paginator = app.Paginator.getByMessage(message);
+    if (paginator)
+      return paginator.deactivate();
+  }
+};
+var messageDelete_native_default = listener;
+export {
+  messageDelete_native_default as default
+};
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsiLi4vc3JjL2xpc3RlbmVycy9tZXNzYWdlRGVsZXRlLm5hdGl2ZS50cyJdLAogICJzb3VyY2VzQ29udGVudCI6IFsiaW1wb3J0ICogYXMgYXBwIGZyb20gXCIuLi9hcHAuanNcIlxyXG5cclxuY29uc3QgbGlzdGVuZXI6IGFwcC5MaXN0ZW5lcjxcIm1lc3NhZ2VEZWxldGVcIj4gPSB7XHJcbiAgZXZlbnQ6IFwibWVzc2FnZURlbGV0ZVwiLFxyXG4gIGRlc2NyaXB0aW9uOiBcIlJlbW92ZSBleGlzdGluZyBwYWdpbmF0b3JcIixcclxuICBhc3luYyBydW4obWVzc2FnZSkge1xyXG4gICAgY29uc3QgcGFnaW5hdG9yID0gYXBwLlBhZ2luYXRvci5nZXRCeU1lc3NhZ2UobWVzc2FnZSlcclxuXHJcbiAgICBpZiAocGFnaW5hdG9yKSByZXR1cm4gcGFnaW5hdG9yLmRlYWN0aXZhdGUoKVxyXG4gIH0sXHJcbn1cclxuXHJcbmV4cG9ydCBkZWZhdWx0IGxpc3RlbmVyXHJcbiJdLAogICJtYXBwaW5ncyI6ICJBQUFBO0FBRUEsTUFBTSxXQUEwQztBQUFBLEVBQzlDLE9BQU87QUFBQSxFQUNQLGFBQWE7QUFBQSxRQUNQLElBQUksU0FBUztBQUNqQixVQUFNLFlBQVksSUFBSSxVQUFVLGFBQWE7QUFFN0MsUUFBSTtBQUFXLGFBQU8sVUFBVTtBQUFBO0FBQUE7QUFJcEMsSUFBTywrQkFBUTsiLAogICJuYW1lcyI6IFtdCn0K
