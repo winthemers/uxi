@@ -6,7 +6,7 @@ export default new app.Command({
   description: "The pet command",
   channelType: "all",
   async run(message) {
-    const emoji =  resolveEmoji(message.guild, "blush")
+    const emoji =  await resolveEmoji(message.guild, "uxiblush")
     message.send(`${emoji} T-T-Thank you\n~~Uxi received pet~~`)
   }
 })
