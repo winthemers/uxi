@@ -13,6 +13,7 @@ export default new app.Command({
       castValue: "number"
     }
   ],
+  userPermissions: ['MANAGE_MESSAGES'],
   async run(message) {
     if (Number(message.args.amount) + 1 > 100 || message.args.amount < 1) {
       const embed = new app.MessageEmbed()
