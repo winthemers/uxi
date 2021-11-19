@@ -3,9 +3,10 @@ import contexts, {Cache} from '../tables/contexts.js'
 
 export default new app.Command({
   name: "context",
+  aliases: ["keyword"],
   description: "Manages context detection to automatically reply kewords",
   channelType: "guild",
-  userPermissions: ['ADMINISTRATOR'],
+  userPermissions: ['MANAGE_MESSAGES'],
   positional: [
     {
       name: "operation",
