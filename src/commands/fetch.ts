@@ -73,7 +73,7 @@ export default new app.Command({
   ],
   async run(message) {
     const okEmoji = await resolveEmoji(message.guild, "check")
-    const errEmoji = await resolveEmoji(message.guild, "linux")
+    const errEmoji = await resolveEmoji(message.guild, "linus")
     const sadEmoji = await resolveEmoji(message.guild, "sadcat")
 
     if (message.args.set) {
