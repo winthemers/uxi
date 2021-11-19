@@ -1,4 +1,4 @@
-import evaluate from "ghom-eval"
+import { evaluate } from "ghom-eval"
 import cp from "child_process"
 import util from "util"
 import * as app from "../app.js"
