@@ -5,6 +5,7 @@ import { promisify } from 'util'
 import axios from 'axios'
 import { GuildMessage } from '../app/command';
 import { CollectorUtils } from 'discord.js-collector-utils';
+import nodeCanvas from 'canvas'
 
 export async function resolveEmoji(guild: Discord.Guild | null, name: string) {
   if (!guild) { return "" }
@@ -105,3 +106,16 @@ export async function resolveUsername(message: Discord.Message, name: string | D
 
   return promise
 }
+
+export function applyCanvasText(canvas: nodeCanvas.Canvas, text: string, font: {family: string, path: string, weight?: string, size: number}) {
+	const ctx = canvas.getContext('2d');
+  nodeCanvas.registerFont(font.path, { family: font.family, weight: font.weight })
+
+	let fontSize = font.size;
+
+	do {
+		ctx.font = `${fontSize}px ${font.family}`;
+	} while (ctx.measureText(text).width > canvas.width - 300);
+
+	return ctx.font;
+};
