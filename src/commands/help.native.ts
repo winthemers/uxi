@@ -46,13 +46,13 @@ export default new app.Command({
           10,
           (page) => {
             return new app.MessageEmbed()
-              .setColor("BLURPLE")
+              .setColor(0x08a2ef)
               .setAuthor(
-                "Command list",
+                "Look at how many tricks i learned :)",
                 message.client.user?.displayAvatarURL()
               )
               .setDescription(page.join("\n"))
-              .setFooter(`${message.usedPrefix}help <command>`)
+              .setFooter(`-\ntip: Use "commas to type one argument with many words"`)
           }
         ),
         filter: (reaction, user) => user.id === message.author.id,

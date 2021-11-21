@@ -930,9 +930,9 @@ export function commandToListItem<Type extends keyof CommandMessageType>(
   message: CommandMessageType[Type],
   cmd: Command<Type>
 ): string {
-  return `**${message.usedPrefix}${commandBreadcrumb(cmd, " ")}** - ${
+  return `**${message.usedPrefix}${commandBreadcrumb(cmd, " ")}**\n${
     cmd.options.description ?? "no description"
-  }`
+  }\n`
 }
 
 export function isNormalMessage(
