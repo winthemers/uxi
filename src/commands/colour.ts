@@ -71,6 +71,12 @@ export default new app.Command({
         nodeCanvas.loadImage('./extras/colour/baseframe.png')
         .then( baseImage => {
           
+          // Start the embed with image shit
+          const resultEmbed = new app.MessageEmbed()
+          .setTitle(`${okEmoji} I worked very hard!`)
+          .setDescription('Calling ?colors for the same image will always have the same result!')
+          .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL())
+
           // Drawing base image
           ctx.drawImage(baseImage, 0, 0, 1080, 360)
 
@@ -81,84 +87,114 @@ export default new app.Command({
           if (palette?.Vibrant) { 
             ctx.fillStyle = palette.Vibrant.getHex()
             ctx.fillRect(0, 155, 154.12, 86.13)
-            applyCanvasText(canvas, palette.Vibrant.getHex(), {
+            applyCanvasText(canvas, palette.Vibrant.getHex().toUpperCase(), {
               family: 'Product Sans',
               path: './extras/fonts/productsansbold.ttf',
               size: 14
             })
-            ctx.fillText(palette.Vibrant.getHex(), 5, 279)
-            ctx.fillText(palette.Vibrant.getRgb().join(', '), 5, 337)
+            ctx.fillText(palette.Vibrant.getHex().toUpperCase(), 5, 279)
+            let rgbArray = palette.Vibrant.getRgb().map(function(col){
+              return Number(col.toFixed(0));
+            });
+            ctx.fillText(rgbArray.join(', '), 5, 337)
+            resultEmbed.addField("Accent", `HEX: ${palette.Vibrant.getHex()}\nGRB: ${rgbArray.join(', ')}`, true)
+            resultEmbed.setColor( palette.Vibrant.getRgb() )
           } 
 
           // Drawing Muted color : 2
-          if (palette?.Mutted) { 
-            ctx.fillStyle = palette.Mutted.getHex()
+          if (palette?.Muted) { 
+            ctx.fillStyle = palette.Muted.getHex()
             ctx.fillRect(184.72, 155, 154.26, 86.13)
-            applyCanvasText(canvas, palette.Mutted.getHex(), {
+            applyCanvasText(canvas, palette.Muted.getHex().toUpperCase(), {
               family: 'Product Sans',
               path: './extras/fonts/productsansbold.ttf',
               size: 14
             })
-            ctx.fillText(palette.Mutted.getHex(), 190, 279)
-            ctx.fillText(palette.Mutted.getRgb().join(', '), 190, 337)
+            ctx.fillText(palette.Muted.getHex().toUpperCase(), 190, 279)
+            let rgbArray = palette.Muted.getRgb().map(function(col){
+              return Number(col.toFixed(0));
+            });
+            ctx.fillText(rgbArray.join(', '), 190, 337)
+            resultEmbed.addField("Muted accent", `HEX: ${palette.Muted.getHex()}\nGRB: ${rgbArray.join(', ')}`, true)
           } 
 
           // Drawing Dark Accent : 3
           if (palette?.DarkVibrant) { 
             ctx.fillStyle = palette.DarkVibrant.getHex()
             ctx.fillRect(370.58, 155, 154.12, 86.13)
-            applyCanvasText(canvas, palette.DarkVibrant.getHex(), {
+            applyCanvasText(canvas, palette.DarkVibrant.getHex().toUpperCase(), {
               family: 'Product Sans',
               path: './extras/fonts/productsansbold.ttf',
               size: 14
             })
-            ctx.fillText(palette.DarkVibrant.getHex(), 375, 279)
-            ctx.fillText(palette.DarkVibrant.getRgb().join(', '), 375, 337)
+            ctx.fillText(palette.DarkVibrant.getHex().toUpperCase(), 375, 279)
+            let rgbArray = palette.DarkVibrant.getRgb().map(function(col){
+              return Number(col.toFixed(0));
+            });
+            ctx.fillText(rgbArray.join(', '), 375, 337)
+            resultEmbed.addField("Dark accent", `HEX: ${palette.DarkVibrant.getHex()}\nGRB: ${rgbArray.join(', ')}`, true)
           } 
 
-          // Drawing Dark Mutted : 4
+          // Drawing Dark Muted : 4
           if (palette?.DarkMuted) { 
             ctx.fillStyle = palette.DarkMuted.getHex()
             ctx.fillRect(555.12, 155, 154.12, 86.13)
-            applyCanvasText(canvas, palette.DarkMuted.getHex(), {
+            applyCanvasText(canvas, palette.DarkMuted.getHex().toUpperCase(), {
               family: 'Product Sans',
               path: './extras/fonts/productsansbold.ttf',
               size: 14
             })
-            ctx.fillText(palette.DarkMuted.getHex(), 563, 279)
-            ctx.fillText(palette.DarkMuted.getRgb().join(', '), 563, 337)
-          } 
+            ctx.fillText(palette.DarkMuted.getHex().toUpperCase(), 563, 279)
+            let rgbArray = palette.DarkMuted.getRgb().map(function(col){
+              return Number(col.toFixed(0));
+            });
+            ctx.fillText(rgbArray.join(', '), 563, 337)
+            resultEmbed.addField("Dark muted accent", `HEX: ${palette.DarkMuted.getHex()}\nGRB: ${rgbArray.join(', ')}`, true)
+          }
           
           // Drawing Accent Light : 5
           if (palette?.LightVibrant) { 
             ctx.fillStyle = palette.LightVibrant.getHex()
             ctx.fillRect(740, 155, 154, 86.13)
-            applyCanvasText(canvas, palette.LightVibrant.getHex(), {
+            applyCanvasText(canvas, palette.LightVibrant.getHex().toUpperCase(), {
               family: 'Product Sans',
               path: './extras/fonts/productsansbold.ttf',
               size: 14
             })
-            ctx.fillText(palette.LightVibrant.getHex(), 745, 279)
-            ctx.fillText(palette.LightVibrant.getRgb().join(', '), 745, 337)
+            ctx.fillText(palette.LightVibrant.getHex().toUpperCase(), 745, 279)
+            let rgbArray = palette.LightVibrant.getRgb().map(function(col){
+              return Number(col.toFixed(0));
+            });
+            ctx.fillText(rgbArray.join(', '), 745, 337)
+            resultEmbed.addField("Light accent", `HEX: ${palette.LightVibrant.getHex()}\nGRB: ${rgbArray.join(', ')}`, true)
           } 
 
-          // Drawing Mutted Light : 6
+          // Drawing Muted Light : 6
           if (palette?.LightMuted) { 
             ctx.fillStyle = palette.LightMuted.getHex()
             ctx.fillRect(925.88, 155, 153.12, 86.13)
-            applyCanvasText(canvas, palette.LightMuted.getHex(), {
+            applyCanvasText(canvas, palette.LightMuted.getHex().toUpperCase(), {
               family: 'Product Sans',
               path: './extras/fonts/productsansbold.ttf',
               size: 14
             })
-            ctx.fillText(palette.LightMuted.getHex(), 929, 279)
-            ctx.fillText(palette.LightMuted.getRgb().join(', '), 929, 337)
+            ctx.fillText(palette.LightMuted.getHex().toUpperCase(), 929, 279)
+            let rgbArray = palette.LightMuted.getRgb().map(function(col){
+              return Number(col.toFixed(0));
+            });
+            ctx.fillText(rgbArray.join(', '), 929, 337)
+            resultEmbed.addField("Muted light accent", `HEX: ${palette.LightMuted.getHex()}\nGRB: ${rgbArray.join(', ')}`, true)
           } 
 
           canvas.toBuffer( (err, result)=>{
             const attach = new app.MessageAttachment(result, 'palette.png')
             canvas.toBuffer( (err, result)=>{
-              message.channel.send( {content: `${message.author.username}'s base:\n⁣`, files: [{ attachment: result }]} )
+              resultEmbed.setImage('attachment://palette.png')
+              .setThumbnail(attachment.url)
+              
+              message.send({embeds:[resultEmbed],  files: [{ attachment: result }]})
+
+              message.delete()
             })
           })
 
@@ -175,8 +211,8 @@ export default new app.Command({
             if (err) {
               const embed = new app.MessageEmbed()
               .setColor('RED')
-              .setTitle(`${blushEmoji} I did an upsie`)
-              .setDescription('Call nodge to help me out.')
+              .setTitle(`${blushEmoji} uxi did upsie`)
+              .setDescription('Call any staff to help me out.')
               message.send({embeds:[embed]})
             }
           })
