@@ -17,7 +17,7 @@ export default new app.Command({
   async run(message) {
     if (Number(message.args.amount) + 1 > 100 || message.args.amount < 1) {
       const embed = new app.MessageEmbed()
-      embed.setTitle(`${await resolveEmoji(message.guild, "no")} Please select a number *between* 1 and 99`)
+      embed.setTitle(`${await resolveEmoji(message.guild, "linus")} Please select a number *between* 1 and 99`)
       embed.setColor("RED")
 
       message.send({embeds:[embed]})
@@ -25,21 +25,25 @@ export default new app.Command({
     }
 
     await message.channel.bulkDelete(Number(message.args.amount) + 1)
+      .then( async () => {
+              
+        const embed = new app.MessageEmbed()
+        .setTitle(`${await resolveEmoji(message.guild, "check")} Cleared \`${message.args.amount + 1}\` messages.`)
+        .setColor("GREEN")
+
+        const log = await message.send({embeds:[embed]})
+
+        setInterval( ()=> {
+          if (log && !log.deleted) {
+            log.delete()
+            .catch(()=>{})
+          }
+        }, 1000 * 10)
+      })
       .catch(async err => {
-        message.send(`${await resolveEmoji(message.guild, "no")} I cannot delete messages older than 14 days`) 
+        message.send(`${await resolveEmoji(message.guild, "linus")} I cannot delete messages older than 14 days\nDiscord is trying to hit me with a stick!`) 
+        return
       })
 
-    const embed = new app.MessageEmbed()
-    .setTitle(`${await resolveEmoji(message.guild, "check")} Cleared \`${message.args.amount + 1}\` messages.`)
-    .setColor("GREEN")
-
-    const log = await message.send({embeds:[embed]})
-
-    setInterval( ()=> {
-      if (log && !log.deleted) {
-        log.delete()
-        .catch(()=>{})
-      }
-    }, 1000 * 10)
   }
 })
