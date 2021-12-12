@@ -21,13 +21,13 @@ export default new app.Command({
       required: false,
       castValue: 'member'
     },
-  ]
+  ],
   async run(message) {
     const emoji =  await resolveEmoji(message.guild, "uxiblush")
     if (message.args.target){
       let animatedGif = await petPetGif(message.args.target.avatarURL)
       
-      message.send({{
+      message.send({
           "embed": {
             "image": {
               "url": 'attachment://pet.gif',
