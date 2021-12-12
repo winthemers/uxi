@@ -29,7 +29,7 @@ export default new app.Command({
     if (message.args.target){
       const member = await resolveUsername(message, message.args.target)
 
-      message.send("MEMBER AVATAR: " + member.avatarURL)
+      message.send("MEMBER AVATAR: " + member.avatarURL())
 
       let animatedGif = await petpet(member.avatarURL)
       
@@ -42,6 +42,7 @@ export default new app.Command({
       message.send({
         embeds:[embed], 
       })
+
       // message.send({
       //     "embed": {
       //       "image": {
