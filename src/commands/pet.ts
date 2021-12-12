@@ -28,16 +28,11 @@ export default new app.Command({
 
     if (message.args.target){
       const member = await resolveUsername(message, message.args.target)
-
-      message.send("MEMBER AVATAR: " + member.user.avatarURL())
-
-      let animatedGif = await petpet(member.avatarURL)
-      
-      message.send('FUCKING animatedGif: ' + JSON.stringify(animatedGif))
+      let animatedGif = await petpet(member.user.avatarURL)
 
       new app.MessageEmbed()
       embed.setColor('GREEN')
-      embed.setTitle(`${emoji} Here, some scratches.`)
+      embed.setTitle(`${emoji} pet pet`)
       embed.setImage('attachment://pet.gif')
       message.send({
         embeds:[embed], 
