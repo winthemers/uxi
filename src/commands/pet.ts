@@ -25,7 +25,7 @@ export default new app.Command({
   async run(message) {
     const emoji =  await resolveEmoji(message.guild, "uxiblush")
     if (message.args.target){
-      let animatedGif = await petPetGif(message.args.target.avatarURL)
+      let animatedGif = await petpet(message.args.target.avatarURL)
       
       message.send({
           "embed": {
