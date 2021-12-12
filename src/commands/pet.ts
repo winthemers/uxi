@@ -28,17 +28,20 @@ export default new app.Command({
       const member = await resolveUsername(message, message.args.target)
       let animatedGif = await petpet(member.user.avatarURL)
 
-      message.send({
-          "embed": {
-            "image": {
-              "url": 'attachment://pet.gif',
+      console.log(animatedGif)
+
+      channel.send('Pet pet', {
+        embed: {
+          thumbnail: {
+               url: 'attachment://pet.gif'
             }
-          }
-        },
-        {
-            file: animatedGif,
+         },
+         files: [{
+            attachment: animatedGif,
             name: 'pet.gif'
-        })
+         }]
+      })
+
     } else {
       message.send(`${emoji}`)
       message.send(`${petPhrases[Math.floor(Math.random() * petPhrases.length)]}`)
