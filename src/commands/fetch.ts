@@ -201,7 +201,7 @@ export default new app.Command({
           if (rows.length == 0) {
             const embed = new app.MessageEmbed().setTitle(`${sadEmoji} I don't have fetch information about this user yet :(`)
             .setColor('YELLOW')
-            .addField("How to fetch", "[download](https://cdn.discordapp.com/attachments/763858761571500042/898706430322946089/Winthemers_UxiFetch.exe) Our fetcher and paste the fetch result here.")
+            .addField("How to fetch", "[Download](https://cdn.discordapp.com/attachments/763858761571500042/898706430322946089/Winthemers_UxiFetch.exe) our fetcher and paste the fetch result here.")
             .addField("How to add a picture", "Just upload the desired image when sending the fetcher message.")
             message.send({embeds: [embed]})
   
