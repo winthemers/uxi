@@ -28,19 +28,16 @@ export default new app.Command({
       const member = await resolveUsername(message, message.args.target)
       let animatedGif = await petpet(member.user.avatarURL)
 
-      console.log(animatedGif)
+      const attach = new app.MessageAttachment(animatedGif, 'petpet.gif')
 
-      channel.send('Pet pet', {
-        embed: {
-          thumbnail: {
-               url: 'attachment://pet.gif'
-            }
-         },
-         files: [{
-            attachment: animatedGif,
-            name: 'pet.gif'
-         }]
-      })
+      const resultEmbed = new app.MessageEmbed()
+      .setImage('attachment://petpet.gif')
+      .setTitle("Nodge is about to kill himself because of this stupid library")
+      .setColor("GREEN")
+
+      message.send({embeds:[resultEmbed],  files: [{ attachment: attach }]})
+
+      message.send("I TRIED SO HARD...")
 
     } else {
       message.send(`${emoji}`)
