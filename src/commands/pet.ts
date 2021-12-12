@@ -1,5 +1,5 @@
 import * as app from "../app.js"
-import {resolveEmoji} from '../namespaces/utils.js'
+import {resolveEmoji, resolveUsername} from '../namespaces/utils.js'
 import petpet from 'pet-pet-gif'
 
 const petPhrases = [
@@ -18,14 +18,15 @@ export default new app.Command({
     {
       name: "target",
       description: "Who will uxi pet?",
-      required: false,
-      castValue: 'member'
+      required: false
     },
   ],
   async run(message) {
     const emoji =  await resolveEmoji(message.guild, "uxiblush")
     if (message.args.target){
-      let animatedGif = await petpet(message.args.target.avatarURL)
+      const member = await resolveUsername(message, message.args.target)
+    
+      let animatedGif = await petpet(member.avatarURL)
       
       message.send({
           "embed": {
