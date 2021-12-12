@@ -29,7 +29,7 @@ export default new app.Command({
     if (message.args.target){
       const member = await resolveUsername(message, message.args.target)
 
-      message.send("MEMBER AVATAR: " + member.avatarURL())
+      message.send("MEMBER AVATAR: " + member.user.avatarURL())
 
       let animatedGif = await petpet(member.avatarURL)
       
