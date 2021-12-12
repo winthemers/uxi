@@ -23,22 +23,36 @@ export default new app.Command({
   ],
   async run(message) {
     const emoji =  await resolveEmoji(message.guild, "uxiblush")
+    
+    message.send('TIME TO DEBUG HARD WAY!')
+
     if (message.args.target){
       const member = await resolveUsername(message, message.args.target)
-    
+
+      message.send("MEMBER AVATAR: " + member.avatarURL)
+
       let animatedGif = await petpet(member.avatarURL)
       
+      message.send('FUCKING animatedGif: ' + JSON.stringify(animatedGif))
+
+      new app.MessageEmbed()
+      embed.setColor('GREEN')
+      embed.setTitle(`${emoji} Here, some scratches.`)
+      embed.setImage('attachment://pet.gif')
       message.send({
-          "embed": {
-            "image": {
-              "url": 'attachment://pet.gif',
-            }
-          }
-        },
-        {
-            file: animatedGif,
-            name: 'pet.gif'
-        })
+        embeds:[embed], 
+      })
+      // message.send({
+      //     "embed": {
+      //       "image": {
+      //         "url": 'attachment://pet.gif',
+      //       }
+      //     }
+      //   },
+      //   {
+      //       file: animatedGif,
+      //       name: 'pet.gif'
+      //   })
     } else {
       message.send(`${emoji}`)
       message.send(`${petPhrases[Math.floor(Math.random() * petPhrases.length)]}`)
