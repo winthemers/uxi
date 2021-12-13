@@ -33,11 +33,16 @@ export default new app.Command({
     .setDescription(`This is the continuation of a conversation that was being held at ${message.channel}\n\nPlease, use this cannel instead.`)
     .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL())
 
+    let url = message.url
+    if (message.reference) {
+      url = `https://discord.com/channels/${message.reference.guildId}/${message.reference.channelId}/${message.reference.messageId}`
+    }
+
     const targetRow = new app.MessageActionRow()
     .addComponents(
       new MessageButton()
         .setLabel('Conversation')
-        .setURL(message.url)
+        .setURL(url)
         .setStyle('LINK')
     )
 
@@ -56,7 +61,11 @@ export default new app.Command({
         .setStyle('LINK')
     )
 
-    const origin = await message.send({embeds:[originEmbed], components:[originRow]})
+    if (message.reference) {
+      const origin = await message.send({embeds:[originEmbed], components:[originRow], reply:{failIfNotExists:false, messageReference:await message.fetchReference()}})
+    } else {
+      const origin = await message.send({embeds:[originEmbed], components:[originRow]})
+    }
 
     await message.delete()
   }
