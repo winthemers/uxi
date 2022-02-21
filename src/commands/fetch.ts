@@ -29,7 +29,7 @@ async function sendFetchEmbed({osVersion, osArchitecture, osBuildVersion, theme,
   embed.addField("Visual Style", theme ?? 'Not identified')
   embed.addField("GPU", gpu ?? 'Not identified', true)
   embed.addField("Resolution", monitor ? monitor.split(', ').join('\n') : 'Not identified', true)
-  embed.addField("Disks", disks ? disks.join('\n') : 'Not identified')
+  embed.addField("Disks", disks ? ( disks?.join('\n') ?? 'Unknown' ) : 'Not identified')
   embed.addField("Memory", ram ?? 'Not identified', true)
   embed.addField("CPU", cpu ?? 'Not identified', true)
 
@@ -172,16 +172,16 @@ export default new app.Command({
   
 
       sendFetchEmbed({
-        osVersion: encodedJSON.OS.Version, 
-        osArchitecture: encodedJSON.OS.Architecture, 
-        osBuildVersion: encodedJSON.OS.BuildVersion, 
-        theme: encodedJSON.Theme, 
-        monitor: encodedJSON.Monitors, 
-        gpu: encodedJSON.CPU, 
-        cpu: encodedJSON.CPU, 
-        ram: encodedJSON.RAM, 
-        disks: encodedJSON.Disks, 
-        computer: encodedJSON.Name, 
+        osVersion: encodedJSON.OS.Version ?? 'Unknown', 
+        osArchitecture: encodedJSON.OS.Architecture ?? 'Unknown', 
+        osBuildVersion: encodedJSON.OS.BuildVersion ?? 'Unknown', 
+        theme: encodedJSON.Theme ?? 'Unknown', 
+        monitor: encodedJSON.Monitors ?? 'Unknown', 
+        gpu: encodedJSON.CPU ?? 'Unknown', 
+        cpu: encodedJSON.CPU ?? 'Unknown', 
+        ram: encodedJSON.RAM ?? 'Unknown', 
+        disks: encodedJSON.Disks ?? 'Unknown', 
+        computer: encodedJSON.Name ?? 'Unknown', 
         image: (attachment && attachIsImage(attachment)) ? attachment.url : undefined, 
         message
       })
@@ -257,17 +257,17 @@ export default new app.Command({
             if (!row) { return }
             
             sendFetchEmbed({
-              osVersion: row.os, 
-              osArchitecture: row.arch, 
-              osBuildVersion: row.build, 
-              theme: row.theme, 
-              monitor: row.monitor, 
-              gpu: row.gpu, 
-              cpu: row.cpu, 
-              ram: row.ram, 
-              disks: row.disks.split("\n"), 
-              computer: row.computer, 
-              image: row.image, 
+              osVersion: row.os  ?? 'Unknown', 
+              osArchitecture: row.arch  ?? 'Unknown', 
+              osBuildVersion: row.build  ?? 'Unknown', 
+              theme: row.theme  ?? 'Unknown', 
+              monitor: row.monitor  ?? 'Unknown', 
+              gpu: row.gpu  ?? 'Unknown', 
+              cpu: row.cpu  ?? 'Unknown', 
+              ram: row.ram  ?? 'Unknown', 
+              disks: row?.disks?.split("\n")  ?? 'Unknown', 
+              computer: row.computer  ?? 'Unknown', 
+              image: row.image  ?? 'Unknown', 
               message
             })
           
