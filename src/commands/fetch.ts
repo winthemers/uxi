@@ -214,16 +214,16 @@ export default new app.Command({
               const target = await message.guild.members.fetch(row.user_id)
 
               sendFetchEmbed({
-                osVersion: row.os, 
-                osArchitecture: row.arch, 
-                osBuildVersion: row.build, 
-                theme: row.theme, 
-                monitor: row.monitor, 
-                gpu: row.gpu, 
-                cpu: row.cpu, 
-                ram: row.ram, 
-                disks: row.disks.split("\n"), 
-                computer: row.computer, 
+                osVersion: row.os ?? 'Unknown', 
+                osArchitecture: row.arch ?? 'Unknown', 
+                osBuildVersion: row.build ?? 'Unknown', 
+                theme: row.theme ?? 'Unknown', 
+                monitor: row.monitor ?? 'Unknown', 
+                gpu: row.gpu ?? 'Unknown', 
+                cpu: row.cpu ?? 'Unknown', 
+                ram: row.ram ?? 'Unknown', 
+                disks: row?.disks?.split("\n") ?? 'Unknown', 
+                computer: row.computer ?? 'Unknown', 
                 image: row.image, 
                 message,
                 member: target
