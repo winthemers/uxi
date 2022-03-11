@@ -30,7 +30,7 @@ export default new app.Command({
 
     // Sends the target channel message
     const targetEmbed = new app.MessageEmbed()
-    .setDescription(`This is the continuation of a conversation that was being held at ${message.channel}\n\nPlease, use this cannel instead.`)
+    .setDescription(`This is the continuation of a conversation that was being held at ${message.channel}\n\nPlease, use this channel instead.`)
     .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL())
 
     let url = message.url
