@@ -14,7 +14,11 @@ export async function resolveEmoji(guild: Discord.Guild | null, name: string) {
 }
 
 export function attachIsImage(msgAttach: Discord.MessageAttachment) {
-  return msgAttach.url.includes(".png") || msgAttach.url.includes(".jpg") || msgAttach.url.includes(".webp") || msgAttach.url.includes(".webm") || msgAttach.url.includes(".mp4") // MP4 And Webm are also gifs, and we are not agains videos.... But the function name is now incorrect.
+  return msgAttach.url.includes(".png") || msgAttach.url.includes(".jpg") || msgAttach.url.includes(".webp")
+}
+
+export function attachIsVideo(msgAttach: Discord.MessageAttachment) {
+  return msgAttach.url.includes(".webm") || msgAttach.url.includes(".mp4") || msgAttach.url.includes('.mov') || msgAttach.url.includes('.mkv')
 }
 
 

@@ -1,6 +1,6 @@
 import * as app from "../app.js"
 import contexts, {Cache as ContextCache} from '../tables/contexts.js'
-import { attachIsImage } from '../namespaces/utils.js'
+import { attachIsImage, attachIsVideo } from '../namespaces/utils.js'
 
 const listener: app.Listener<"messageCreate"> = {
   event: "messageCreate",
@@ -25,6 +25,7 @@ const listener: app.Listener<"messageCreate"> = {
       if (message.content.toLowerCase().includes(row.keyword.toLowerCase())) {
         message.channel.send(row.response)
       }
+
     }
 
     // Check if the message contains a mention to another message.
@@ -40,17 +41,46 @@ const listener: app.Listener<"messageCreate"> = {
     if (mentionMatch){
       const channelManager = await message.guild.channels.fetch(mentionMatch[2]) as app.TextChannel
       const messageManager = await channelManager.messages.fetch(mentionMatch[3])
-
       const attachment = messageManager.attachments.first()
+
       const avatar = messageManager.author.avatarURL()
-      if (attachment && attachIsImage(attachment)) {
+
+      if (attachment && attachIsImage(attachment) && !attachIsVideo(attachment)) {
         embed.setImage(attachment.url)
       }
-      embed.setColor('AQUA')
-      embed.setDescription(messageManager.content)
-      embed.setAuthor(messageManager.author.tag, avatar ?? "")
-      embed.setFooter(`Mentioned by ${message.author.tag}`, message.author.avatarURL() ?? "" ) // I hate DiscordJS as much as i love it, IF IT MAY BE NULL, WHY NOT CASTING IT?
 
+      if (messageManager.embeds) {
+        console.log("Message has embeds")
+        
+        for (let contentEmbed of messageManager.embeds) {
+          console.log("Embed", contentEmbed)
+          contentEmbed.fields.forEach( field => {
+            embed.addField(field.name, field.value, field.inline)
+          })
+          embed.setDescription(contentEmbed.description ?? '')
+          embed.setColor( contentEmbed.color ?? 'AQUA')
+          if (contentEmbed.image) { embed.setImage( contentEmbed.image.url )}
+          if (contentEmbed.thumbnail) { embed.setThumbnail( contentEmbed.thumbnail.url ) }
+        }
+
+      }
+      embed.setColor('AQUA')
+      // Discord has video property in their embeds, but they don't let anyone else use it
+      // So we just send the video link in the message body...
+      embed.setDescription(`${embed.description ? embed.description : ''} ${messageManager.content}`)
+      embed.setAuthor({
+        name: messageManager.author.tag,
+        iconURL: messageManager.author.avatarURL() ?? undefined,
+        url: message.url
+      })
+      embed.setFooter({
+        text: `Mentioned by ${message.author.tag}`,
+        iconURL: message.author.avatarURL() ?? undefined
+      })
+      if (attachment && attachIsVideo(attachment) ) {
+        message.channel.send(attachment.url)
+        embed.addField('[VIDEO ABOVE]', `[Download link](${attachment.url})`, true)
+      }
       message.channel.send({embeds:[embed]})
     }
 
